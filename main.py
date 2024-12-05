@@ -29,9 +29,10 @@ class GameObject:
     def draw(self, screen):
         """Рисует объект на экране."""
         pygame.draw.rect(
-            screen, self.body_color, pygame.Rect(
-                self.position[0], self.position[1], GRID_SIZE, GRID_SIZE
-            )
+            screen,
+            self.body_color,
+            pygame.Rect(
+                self.position[0], self.position[1], GRID_SIZE, GRID_SIZE),
         )
 
 
@@ -46,12 +47,8 @@ class Apple(GameObject):
         """Случайным образом определяет позицию яблока."""
         self.position = (
             random.randint(0, GRID_WIDTH - 1) * GRID_SIZE,
-            random.randint(0, GRID_HEIGHT - 1) * GRID_SIZE
+            random.randint(0, GRID_HEIGHT - 1) * GRID_SIZE,
         )
-
-    def draw(self, screen):
-        """Рисует яблоко на экране."""
-        super().draw(screen)
 
 
 # Класс змейки
@@ -87,8 +84,9 @@ class Snake(GameObject):
         """Рисование змейки."""
         for segment in self.positions:
             pygame.draw.rect(
-                screen, self.body_color,
-                pygame.Rect(segment[0], segment[1], GRID_SIZE, GRID_SIZE)
+                screen,
+                self.body_color,
+                pygame.Rect(segment[0], segment[1], GRID_SIZE, GRID_SIZE),
             )
 
     def get_head_position(self):
@@ -118,7 +116,11 @@ def handle_keys(snake):
 
 # Основной игровой цикл
 def main():
-    """Основной игровой цикл."""
+    """
+    Основной игровой цикл.
+
+    Инициализирует экран, создает объекты игры и запускает игровой процесс.
+    """
     # Инициализация окна и экрана
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     pygame.display.set_caption('Snake Game')
